@@ -4,7 +4,6 @@ from time import sleep
 def alarm():
     with open('/sys/class/power_supply/BAT0/present') as f:
         present = int(f.read())
-    f.close()
 
     if present == 1:
         with open('/sys/class/power_supply/BAT0/status') as f1:
@@ -18,8 +17,6 @@ def alarm():
                         os.system('spd-say batterylow')
                         sleep(1)
                         os.system('spd-say ' + str(capacity) + 'percentremaining')
-                f2.close()
-        f1.close()
 
 if __name__ == '__main__':
     while True:
